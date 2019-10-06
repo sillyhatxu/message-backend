@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package message;
+
+import "google/protobuf/timestamp.proto";
+
+service MessageService {
+    rpc SendMessage (AttachmentRequest) returns (Response) {
+    }
+}
+
+message AttachmentRequest {
+    string pretext = 1;
+    string fallback = 2;
+    string color = 3;
+    string authorName = 4;
+    string authorLink = 5;
+    string authorIcon = 6;
+    string title = 7;
+    string titleLink = 8;
+    string text = 9;
+    string attachmentType = 10;
+    string callbackId = 11;
+    string imageURL = 12;
+    string thumbURL = 13;
+    string footer = 14;
+    string footerIcon = 15;
+    google.protobuf.Timestamp Timestamp = 16;
+    repeated AttachmentField fields = 17;
+    repeated AttachmentAction actions = 18;
+}
+
+message AttachmentField {
+    string title = 1;
+    string value = 2;
+    bool short = 3;
+}
+
+message AttachmentAction {
+    string name = 1;
+    string text = 2;
+    string type = 3;
+    string value = 4;
+    string url = 5;
+}
+
+message Response {
+    uint32 code = 1;
+    string message = 2;
+}
